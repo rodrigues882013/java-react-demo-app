@@ -1,0 +1,64 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+////Front end build embedded on a set of gradle tasks
+//task getNode(type: Exec) {
+//    commandLine "wget", "-c", "https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.xz"
+//}
+//
+//task decompress(type: Exec){
+//    commandLine "tar", "-xf", "node-v6.11.3-linux-x64.tar.xz"
+//}
+//
+//task installDependencies(type: Exec){
+//    commandLine "node-v6.11.3-linux-x64/bin/npm", "install"
+//}
+//
+//task buildFrontend(type: Exec){
+//    commandLine "node-v6.11.3-linux-x64/bin/npm", "run dev"
+//}
+//
+//task serveFrontend(type: Exec){
+//    commandLine "node-v6.11.3-linux-x64/bin/npm", "run", "dev"
+//}
+//
+//decompress.dependsOn getNode
+//installDependencies.dependsOn decompress
+//buildFrontend.dependsOn installDependencies
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-jersey')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-mobile')
+    compile('org.postgresql:postgresql:42.1.4.jre7')
+    compile('com.google.code.gson:gson:2.8.1')
+    compile('org.json:json:20141113')
+    compile('io.jsonwebtoken:jjwt:0.7.0')
+    compile('com.github.eirslett:frontend-maven-plugin:1.5')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
